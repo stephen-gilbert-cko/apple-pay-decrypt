@@ -1,11 +1,11 @@
 # apple-pay-decrypt
-A simple app demonstrating decryption of payment data within an Apple Pay payment token.
+A simple app demonstrating decryption of payment data from an Apple Pay payment token.
 
 ## Apple Pay payment data
 
 On [`authorization`](https://developer.apple.com/documentation/applepayontheweb/applepaysession/onpaymentauthorized) via the payment sheet, Apple will return a [`payment`](https://developer.apple.com/documentation/applepayontheweb/applepaypayment) object.
 
-Within this is a [`token`](https://developer.apple.com/documentation/applepayontheweb/applepaypaymenttoken) object, alongside optional plaintext `billingContact` and `shippingContact` information if collected.
+Within this is a [`token`](https://developer.apple.com/documentation/applepayontheweb/applepaypaymenttoken) object, alongside optional plaintext `billingContact` and `shippingContact` information (if collected).
 
 Within the `token` object is some plaintext `paymentMethod` data, a unique `transactionIdentifier` and, critically, a [`paymentData`](https://developer.apple.com/documentation/passkit/payment-token-format-reference#Payment-token-format-reference) object which contains the encrypted data required for payment processing.
 
@@ -35,11 +35,11 @@ For example, with Checkout.com this looks like [exchanging `paymentData` for a s
 
 Those with the highest possible level of PCI compliance (DSS Level 1) can either do the above, _**or**_ have the option to decrypt `paymentData` themselves.
 
-This project demonstrates how to decrypt the payload, to then handle processing yourself.
+This app demonstrates how to decrypt the payload, to then handle processing yourself. For example, with Checkout.com this looks like [requesting payment directly with a pre-decrypted Apple Pay token](https://www.checkout.com/docs/payments/add-payment-methods/apple-pay/api-only#Request_a_payment).
 
-For example, with Checkout.com this looks like [requesting payment directly with a pre-decrypted Apple Pay token](https://www.checkout.com/docs/payments/add-payment-methods/apple-pay/api-only#Request_a_payment).
+## Get started
 
-## Certificate snpm install @madskunker/apple-pay-decryptetup
+### Certificate setup
 > [!IMPORTANT]
 > You will need an Apple Developer account to continue.
 
@@ -88,11 +88,18 @@ Under [/certs](/certs) you should now have:
 - [`apple_pay_cert.pem`](/certs/apple_pay_cert.pem)
 - [`apple_pay_private.pem`](/certs/apple_pay_private.pem)
 
-## Decryption
+### Decryption
 
 Top achieve the decryption itself, we use package [@madskunker/apple-pay-decrypt](https://www.npmjs.com/package/@madskunker/apple-pay-decrypt).
 
-1. Install the package dependency:
+1. In [index.js](./index.js), set `paymentDataFromApplePay` to your paymentData JSON, returned by Apple Pay.
+
+2. In your terminal, make sure you're in the top-level app directory. If you're still in [/certs](/certs) then step out with:
+``` zsh
+cd ..
+```
+
+2. Install the package dependency:
 ``` zsh
 npm install
 ```
