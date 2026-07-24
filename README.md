@@ -65,7 +65,7 @@ openssl req -new -sha256 -key apple_pay_private.key -subj "/CN=merchant.test.dec
 
 3. In the Apple Developer portal, navigate to your new Merchant ID and select **Create Certificate** under **Payment Processing Certificate**.
 > [!NOTE]
-> For this guide we will assume Apple's standard ECC encryption, so answer **No** when asked about processing exclusively in China mainland (where RSA encryption is used).
+> For this guide we will assume Apple's standard ECC encryption, so answer **No** when asked about processing exclusively in mainland China (where RSA encryption is used).
 
 4. Upload your `apple_pay_request.csr` file, then download the certificate file from Apple: `apple_pay.cer`. Place this in the [/certs](/certs) directory.
 
@@ -90,7 +90,7 @@ Under [/certs](/certs) you should now have:
 
 ### Decryption
 
-Top achieve the decryption itself, we use package [@madskunker/apple-pay-decrypt](https://www.npmjs.com/package/@madskunker/apple-pay-decrypt).
+To achieve the decryption itself, we will use package [@madskunker/apple-pay-decrypt](https://www.npmjs.com/package/@madskunker/apple-pay-decrypt).
 
 1. In [index.js](./index.js), set `paymentDataFromApplePay` to your paymentData JSON, returned by Apple Pay.
 
