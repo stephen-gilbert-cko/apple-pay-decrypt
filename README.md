@@ -58,7 +58,7 @@ cd certs
 openssl ecparam -name prime256v1 -genkey -noout -out apple_pay_private.key
 ```
 
-4. Certificate Signing Request (CSR), replacing `merchant.test.decryption` with your Merchant ID:
+4. Generate a Certificate Signing Request (CSR), replacing `merchant.test.decryption` with your Merchant ID:
 ``` zsh
 openssl req -new -sha256 -key apple_pay_private.key -subj "/CN=merchant.test.decryption" -out apple_pay_request.csr
 ```
