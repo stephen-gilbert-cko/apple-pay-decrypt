@@ -41,7 +41,7 @@ This app demonstrates how to decrypt the payload, to then handle processing your
 
 ### Certificate setup
 > [!IMPORTANT]
-> You will need an Apple Developer account to continue.
+> You will need an [Apple Developer Program membership](https://developer.apple.com/programs/enroll/) to continue.
 
 1. Sign in to your Apple Developer account and navigate to [Merchant IDs](https://developer.apple.com/account/resources/identifiers/list/merchant).
 
