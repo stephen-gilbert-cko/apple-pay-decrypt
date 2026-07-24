@@ -23,6 +23,38 @@ Within the `token` object is some plaintext `paymentMethod` data, a unique `tran
 }
 ```
 
+When decrypted, it will look something like this (values mocked for demonstration purposes):
+``` json
+{
+    "applicationPrimaryAccountNumber": "4242424242424242", // DPAN or MPAN token
+    "applicationExpirationDate": "300228", // YYMMDD => 2030-02-28
+    "currencyCode": "826", // ISO 4217 numeric code => GBP
+    "transactionAmount": 1234, // in currency's minor unit => £12.34
+    "deviceManufacturerIdentifier": "040010030384",
+    "paymentDataType": "3DSecure",
+    "paymentData": {
+        "onlinePaymentCryptogram": "AgAAAAAAAIR8CQrXcIhbQAAAAAA=", // Single-use authentication value
+        "eciIndicator": "5" // Optional; always returned for Visa
+    },
+    // If MPAN (recurring/deferred/autoReload), the following is also returned:
+    "merchantTokenIdentifier": "DNITHE382620546824242945", // Sent in future token lifecycle notifications
+    "merchantTokenMetadata": {
+        "cardMetadata": {
+            "cardCountry": "GB",
+            "shortDescription": "Visa Debit Card",
+            "fpanSuffix": "4242"
+        },
+        "cardArt": [
+            {
+                "url": "https://nc-pod9-smp-device-asset.apple.com:443/broker/v1/assets/bf370647dbb942e2919703c2c39c84ca",
+                "name": "cardBackgroundCombined@2x.png",
+                "type": "image/png"
+            }
+        ]
+    }
+}
+```
+
 ## PCI compliance
 > [!WARNING]
 > Read before continuing.

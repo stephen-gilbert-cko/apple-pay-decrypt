@@ -16,7 +16,9 @@ const paymentDataFromApplePay = {};
 
 const isEmpty = (obj) => !obj || Object.keys(obj).length === 0;
 if (isEmpty(paymentDataFromApplePay)) {
-  console.error("Please provide valid paymentData JSON in paymentDataFromApplePay");
+  console.error(
+    "Please provide valid paymentData JSON in paymentDataFromApplePay",
+  );
   process.exit(1);
 }
 
@@ -24,4 +26,7 @@ const token = new PaymentToken(paymentDataFromApplePay);
 
 let decrypted = token.decrypt(certPem, privateKeyPem);
 
-console.log("Decrypted token: ", decrypted);
+console.log(
+  "Decrypted token: ",
+  require("util").inspect(decrypted, { depth: null, colors: true }),
+);
