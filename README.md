@@ -3,7 +3,7 @@ A simple app demonstrating decryption of payment data from an Apple Pay payment 
 
 ## Apple Pay payment data
 
-On [`authorization`](https://developer.apple.com/documentation/applepayontheweb/applepaysession/onpaymentauthorized) via the payment sheet, Apple will return a [`payment`](https://developer.apple.com/documentation/applepayontheweb/applepaypayment) object.
+On [authorization](https://developer.apple.com/documentation/applepayontheweb/applepaysession/onpaymentauthorized) via the payment sheet, Apple will return a [`payment`](https://developer.apple.com/documentation/applepayontheweb/applepaypayment) object.
 
 Within this is a [`token`](https://developer.apple.com/documentation/applepayontheweb/applepaypaymenttoken) object, alongside optional plaintext `billingContact` and `shippingContact` information (if collected).
 
