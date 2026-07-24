@@ -26,7 +26,7 @@ Within the `token` object is some plaintext `paymentMethod` data, a unique `tran
 When decrypted, it will look something like this (values mocked for demonstration purposes):
 ``` js
 {
-    applicationPrimaryAccountNumber: "4242424242424242", // DPAN or MPAN token
+    applicationPrimaryAccountNumber: "4659105569051157", // DPAN or MPAN token
     applicationExpirationDate: "300228", // YYMMDD => 2030-02-28
     currencyCode: "826", // ISO 4217 numeric code => GBP
     transactionAmount: 1234, // in currency's minor unit => £12.34
@@ -36,13 +36,13 @@ When decrypted, it will look something like this (values mocked for demonstratio
         onlinePaymentCryptogram: "AgAAAAAAAIR8CQrXcIhbQAAAAAA=", // Single-use authentication value
         eciIndicator: "5" // Optional; always returned for Visa
     },
-    // If MPAN (recurring/deferred/autoReload), the following is also returned:
+    /* If MPAN (recurring/deferred/autoReload), the following is also returned */
     merchantTokenIdentifier: "DNITHE382620546824242945", // Sent in future token lifecycle notifications
     merchantTokenMetadata: {
         cardMetadata: {
             cardCountry: "GB",
-            shortDescription: "Visa Debit Card",
-            fpanSuffix: "4242"
+            shortDescription: "Visa Debit Card", // Card name in the user's wallet
+            fpanSuffix: "4242" // Underlying card last 4 digits
         },
         cardArt: [
             {
