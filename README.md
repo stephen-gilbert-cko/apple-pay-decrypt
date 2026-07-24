@@ -29,7 +29,7 @@ Within the `token` object is some plaintext `paymentMethod` data, a unique `tran
 
 Most merchants do _**not**_ need to decrypt the `paymentData` payload.
 
-With a standard level of PCI compliance (SAQ A), you need to send the encrypted payload straight to a payment service provider (PSP) for them to decrypt and process on your behalf.
+With a standard level of PCI compliance (SAQ A), you need to send the encrypted payload straight to a payment service provider (PSP) to decrypt and process on your behalf.
 
 For example, with Checkout.com this looks like [exchanging `paymentData` for a single-use token](https://www.checkout.com/docs/payments/add-payment-methods/apple-pay/api-only#Generate_a_Checkout.com_token_from_the_Apple_Pay_token), which can then be used to request payment.
 
@@ -63,7 +63,8 @@ openssl ecparam -name prime256v1 -genkey -noout -out apple_pay_private.key
 openssl req -new -sha256 -key apple_pay_private.key -subj "/CN=merchant.test.decryption" -out apple_pay_request.csr
 ```
 
-6. In the Apple Developer portal, navigate to your new Merchant ID and select **Create Certificate** under **Payment Processing Certificate**.
+6. In the Apple Developer portal, navigate to your new Merchant ID and select **Create Certificate** under **Apple Pay Payment Processing Certificate**.
+![alt text](./assets/pp-cert-ui.png)
 > [!NOTE]
 > For this guide we will assume Apple's standard ECC encryption, so answer **No** when asked about processing exclusively in mainland China (where RSA encryption is used).
 
