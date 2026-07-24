@@ -53,33 +53,33 @@ This app demonstrates how to decrypt the payload, to then handle processing your
 cd certs
 ```
 
-3. Generate an ECP-256 private key:
+4. Generate an ECP-256 private key:
 ``` zsh
 openssl ecparam -name prime256v1 -genkey -noout -out apple_pay_private.key
 ```
 
-4. Generate a Certificate Signing Request (CSR), replacing `merchant.test.decryption` with your Merchant ID:
+5. Generate a Certificate Signing Request (CSR), replacing `merchant.test.decryption` with your Merchant ID:
 ``` zsh
 openssl req -new -sha256 -key apple_pay_private.key -subj "/CN=merchant.test.decryption" -out apple_pay_request.csr
 ```
 
-3. In the Apple Developer portal, navigate to your new Merchant ID and select **Create Certificate** under **Payment Processing Certificate**.
+6. In the Apple Developer portal, navigate to your new Merchant ID and select **Create Certificate** under **Payment Processing Certificate**.
 > [!NOTE]
 > For this guide we will assume Apple's standard ECC encryption, so answer **No** when asked about processing exclusively in mainland China (where RSA encryption is used).
 
-4. Upload your `apple_pay_request.csr` file, then download the certificate file from Apple: `apple_pay.cer`. Place this in the [/certs](/certs) directory.
+7. Upload your `apple_pay_request.csr` file, then download the certificate file from Apple: `apple_pay.cer`. Place this in the [/certs](/certs) directory.
 
-5. Create a PEM file using the certificate:
+8. Create a PEM file using the certificate:
 ``` zsh
 openssl x509 -inform DER -in apple_pay.cer -out apple_pay_cert.pem
 ```
 
-6. Create a P12 file, containing both the certificate and the key. You will be prompted to provide an optional password:
+9. Create a P12 file, containing both the certificate and the key. You will be prompted to provide an optional password:
 ``` zsh
 openssl pkcs12 -export -inkey apple_pay_private.key -in apple_pay_cert.pem -out apple_pay_bundle.p12 -name "apple-pay"
 ```
 
-7. Create another PEM file, containing the certificate and the key, using the P12 file. If you set a password in the previous step then you will be prompted for it:
+10. Create another PEM file, containing the certificate and the key, using the P12 file. If you set a password in the previous step then you will be prompted for it:
 ``` zsh
 openssl pkcs12 -in apple_pay_bundle.p12 -nocerts -nodes -out apple_pay_private.pem
 ```
@@ -99,12 +99,12 @@ To achieve the decryption itself, we will use package [@madskunker/apple-pay-dec
 cd ..
 ```
 
-2. Install the package dependency:
+3. Install the package dependency:
 ``` zsh
 npm install
 ```
 
-2. Run the app:
+4. Run the app:
 ``` zsh
 npm start
 ```
