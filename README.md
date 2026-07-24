@@ -35,7 +35,7 @@ For example, with Checkout.com this looks like [exchanging `paymentData` for a s
 
 Those with the highest possible level of PCI compliance (DSS Level 1) can either do the above, _**or**_ have the option to decrypt `paymentData` themselves.
 
-This app demonstrates how to decrypt the payload, to then handle processing yourself. For example, with Checkout.com this looks like [requesting payment directly with a pre-decrypted Apple Pay token](https://www.checkout.com/docs/payments/add-payment-methods/apple-pay/api-only#Request_a_payment).
+This app demonstrates how to decrypt the payload, to then handle processing yourself. For example, with Checkout.com you can [request payment directly with a pre-decrypted Apple Pay token](https://www.checkout.com/docs/payments/add-payment-methods/apple-pay/api-only#Request_a_payment).
 
 ## Get started
 
