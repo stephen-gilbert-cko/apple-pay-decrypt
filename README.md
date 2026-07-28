@@ -30,7 +30,7 @@ When decrypted, it will look something like this (values mocked for demonstratio
     applicationExpirationDate: "300228", // YYMMDD => 2030-02-28
     currencyCode: "826", // ISO 4217 numeric code => GBP
     transactionAmount: 1234, // in currency's minor unit => £12.34
-    cardholderName: "John Smith" // Optional
+    cardholderName: "John Smith", // Optional
     deviceManufacturerIdentifier: "040010030384",
     paymentDataType: "3DSecure",
     paymentData: {
@@ -51,7 +51,7 @@ When decrypted, it will look something like this (values mocked for demonstratio
             transactionAmount: "235"
         }
         // ...
-    ]
+    ],
     /*  If MPAN (recurring/deferred/autoReload), the following is also returned  */
     merchantTokenIdentifier: "DNITHE382620546824242945", // Sent in future token lifecycle notifications
     merchantTokenMetadata: {
