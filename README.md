@@ -30,13 +30,29 @@ When decrypted, it will look something like this (values mocked for demonstratio
     applicationExpirationDate: "300228", // YYMMDD => 2030-02-28
     currencyCode: "826", // ISO 4217 numeric code => GBP
     transactionAmount: 1234, // in currency's minor unit => £12.34
+    cardholderName: "John Smith" // Optional
     deviceManufacturerIdentifier: "040010030384",
     paymentDataType: "3DSecure",
     paymentData: {
         onlinePaymentCryptogram: "AgAAAAAAAIR8CQrXcIhbQAAAAAA=", // Single-use authentication value
         eciIndicator: "5" // Optional; always returned for Visa
     },
-    /* If MPAN (recurring/deferred/autoReload), the following is also returned */
+    /*  If multi-merchant payment, authenticationResponses returned for each token context  */
+    /*  instead of a single paymentData.onlinePaymentCryptogram  */
+    authenticationResponses: [
+        {
+            merchantIdentifier: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            authenticationData: "ADYBAJBXIwAANiQGEVcjmAdXIwA=",
+            transactionAmount: "999"
+        },
+        {
+            merchantIdentifier: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            authenticationData: "AhJ3hnYAoAbVz5zg1e17MAACAAA=",
+            transactionAmount: "235"
+        }
+        // ...
+    ]
+    /*  If MPAN (recurring/deferred/autoReload), the following is also returned  */
     merchantTokenIdentifier: "DNITHE382620546824242945", // Sent in future token lifecycle notifications
     merchantTokenMetadata: {
         cardMetadata: {
